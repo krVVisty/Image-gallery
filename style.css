@@ -106,7 +106,13 @@ body {
 /* Mobile: hide thumbnails to give space */
 @media (max-width: 480px) {
   #thumbnails {
-    display: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto; /* enable horizontal scrolling */
+    gap: 8px; /* spacing between thumbnails */
+    padding: 5px;
+    background: rgba(0, 0, 0, 0.5); /* semi-transparent background */
   }
   .arrow {
     width: 18px;
