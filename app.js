@@ -12,6 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
     { src: "assets/images/img1.JPG", alt: "Image 1" },
     { src: "assets/images/img2.JPG", alt: "Image 2" },
     { src: "assets/images/img3.JPG", alt: "Image 3" },
+    { src: "assets/images/img4.JPG", alt: "Image 4" },
+    { src: "assets/images/img5.JPG", alt: "Image 5" },
+    { src: "assets/images/img6.JPG", alt: "Image 6" },
+    { src: "assets/images/img7.JPG", alt: "Image 7" },
+    { src: "assets/images/img8.JPG", alt: "Image 8" },
+    { src: "assets/images/img9.JPG", alt: "Image 9" },
   ];
 
   // Robustly set the large image (preload first to avoid flicker/black frames)
