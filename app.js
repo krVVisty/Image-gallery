@@ -81,3 +81,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialise
   setLarge(0);
 });
+
+const toggleBtn = document.getElementById("toggleThumbnails");
+const thumbsContainer = document.getElementById("thumbnailsContainer");
+
+toggleBtn.addEventListener("click", () => {
+  thumbsContainer.classList.toggle("minimized"); // toggle the class
+  if (thumbsContainer.classList.contains("minimized")) {
+    toggleBtn.textContent = "⌃"; // up arrow when minimized
+  } else {
+    toggleBtn.textContent = "⌄"; // down arrow when expanded
+  }
+});
