@@ -3,13 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
-    <script src="./app.js" defer></script>
-    <title>Image Gallery</title>
+    <title>Local Gallery</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Image Gallery</h1>
-    <div id="thumbnail-container"></div>
-    <div id="large-image-container"></div>
+    <!-- Fullscreen image area -->
+    <div id="imageShowcase">
+      <img id="displayImage" src="" alt="Selected image" />
+    </div>
+
+    <!-- Side navigation arrows (centre-left / centre-right) -->
+    <div class="arrows" aria-hidden="false">
+      <button id="prev" class="arrow" aria-label="Previous image">❮</button>
+      <button id="next" class="arrow" aria-label="Next image">❯</button>
+    </div>
+
+    <!-- Thumbnails bar at the bottom -->
+    <div id="thumbnails"></div>
+
+    <script src="app.js"></script>
   </body>
 </html>

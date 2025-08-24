@@ -1,63 +1,77 @@
-// console.log("Hello world!");
+document.addEventListener("DOMContentLoaded", () => {
+  const selectedImage = document.getElementById("displayImage");
+  const btnPrev = document.getElementById("prev");
+  const btnNext = document.getElementById("next");
+  const thumbsWrap = document.getElementById("thumbnails");
 
-// 1. Images data array (for now only 3 images)
-const images = [
-  {
-    url: "./assets/images/img1.jpeg",
-    altText: "Image 1 description",
-  },
-  {
-    url: "./assets/images/img2.jpeg",
-    altText: "Image 2 description",
-  },
-  {
-    url: "./assets/images/img3.jpeg",
-    altText: "Image 3 description",
-  },
-];
-/* 
-We create an array ([]) of objects ({}), each representing one image.
-url → the path to the image file (local or online).
-altText → alternative text for the image, useful for accessibility and displayed if the image cannot load.
-Using an array allows us to manage multiple images easily and use a loop instead of creating each thumbnail manually. 
-*/
+  const thumbnails = [];
+  let current = 0;
 
-// 2. Function that makes thumbnails
-function createThumbnails() {
-  const thumbnailContainer = document.getElementById("thumbnail-container");
+  // EXACT file names (case-sensitive). If your files are IMG_001.JPG, use that exact name.
+  const images = [
+    { src: "assets/images/img1.JPG", alt: "Image 1" },
+    { src: "assets/images/img2.JPG", alt: "Image 2" },
+    { src: "assets/images/img3.JPG", alt: "Image 3" },
+  ];
 
-  for (let i = 0; i < images.length; i++) {
-    const img = document.createElement("img");
-    img.src = images[i].url;
-    img.alt = images[i].altText;
-    img.className = "thumbnail";
-    img.addEventListener("click", () => createLargeImageHandler(images[i]));
-    thumbnailContainer.appendChild(img);
+  // Robustly set the large image (preload first to avoid flicker/black frames)
+  function setLarge(index) {
+    current = (index + images.length) % images.length;
+    const { src, alt } = images[current];
+
+    const loader = new Image();
+    loader.decoding = "async";
+    loader.onload = () => {
+      selectedImage.src = src;
+      selectedImage.alt = alt || "";
+      highlightCurrent();
+    };
+    loader.onerror = () => {
+      console.error("404 or load error:", src);
+      // Optional: provide a placeholder if desired
+      // selectedImage.src = "assets/images/placeholder.jpg";
+      highlightCurrent();
+    };
+    loader.src = src;
   }
-}
-/* 
-1. document.getElementById("thumbnail-container")
-We select the HTML element with id thumbnail-container to hold the thumbnails.
 
-2. for (let i = 0; i < images.length; i++)
-A for loop goes through all the elements in the images array.
-i is the index of the current image.
+  // Build thumbnails dynamically
+  images.forEach((img, i) => {
+    const t = document.createElement("img");
+    t.src = img.src; // If you create lighter thumb files, point here instead
+    t.alt = img.alt || "";
+    t.className = "thumbnail";
+    t.loading = "lazy";
+    t.decoding = "async";
+    t.addEventListener("click", () => setLarge(i));
 
-3. document.createElement("img")
-We create a new <img> element for the thumbnail.
+    thumbsWrap.appendChild(t);
+    thumbnails.push(t);
+  });
 
-4. img.src = images[i].url
-Set the image source – where the file is loaded from.
+  // Visual highlight of the active thumbnail
+  function highlightCurrent() {
+    thumbnails.forEach((el) => el.classList.remove("selectedThumbnail"));
+    if (thumbnails[current])
+      thumbnails[current].classList.add("selectedThumbnail");
+  }
 
-5. img.alt = images[i].altText
-Set the alternative text for accessibility.
+  // Navigation handlers
+  function next() {
+    setLarge(current + 1);
+  }
+  function prev() {
+    setLarge(current - 1);
+  }
 
-6. img.className = "thumbnail"
-Assign a CSS class for styling (e.g., size 100px).
-img.addEventListener("click", () => createLargeImageHandler(images[i]))
+  btnNext.addEventListener("click", next);
+  btnPrev.addEventListener("click", prev);
 
-7. Add an event listener: clicking the thumbnail calls createLargeImageHandler to show the large image.
+  window.addEventListener("keydown", (e) => {
+    if (e.code === "ArrowRight") next();
+    if (e.code === "ArrowLeft") prev();
+  });
 
-8. thumbnailContainer.appendChild(img)
-Append the image element to the thumbnail container in HTML. 
-*/
+  // Initialise
+  setLarge(0);
+});
