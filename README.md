@@ -21,4 +21,5 @@
 - I realized the importance of **case sensitivity** in filenames, especially on macOS, as `.JPG` vs `.jpg` made images not load.
 - External resources like **YouTube tutorials on JS galleries and MDN documentation** were extremely helpful.
 - Next time, I could improve **performance by using smaller thumbnail versions** instead of full-size images.
+- I also ran **Lighthouse report** using the browser's Inspect tool, and the gallery received a medium performance score. This is likely because the image files are still large (~5 MB each), so compressing them to smaller sizes would improve performance.
 - Overall, the project went well; the gallery is now fully functional, interactive, and visually responsive.
