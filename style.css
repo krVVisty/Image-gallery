@@ -151,3 +151,31 @@ body {
 #thumbnailsContainer.minimized #thumbnails {
   display: none; /* hides miniatures */
 }
+
+/* ----------------- Mobile devices improvement ----------------- */
+/* For screens up to 480px wide, instead of hiding thumbnails completely,
+   we allow horizontal scrolling so users can still see thumbnails in portrait mode */
+@media (max-width: 480px) {
+  #thumbnails {
+    display: flex; /* show thumbnails */
+    flex-direction: row; /* align horizontally */
+    overflow-x: auto; /* enable horizontal scrolling */
+    flex-wrap: nowrap; /* prevent wrapping to next line */
+    gap: 8px; /* spacing between thumbnails */
+    padding: 5px;
+    background: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+    max-width: 100%;
+  }
+
+  .thumbnail {
+    width: 70px; /* smaller thumbnails for mobile */
+    height: 50px;
+    border-radius: 8px;
+  }
+
+  .arrow {
+    width: 18px; /* keep arrow buttons small */
+    height: 18px;
+    font-size: 8px;
+  }
+}
