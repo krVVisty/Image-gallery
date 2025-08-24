@@ -1,19 +1,24 @@
 # Reflection
 
-Please also provide an assignment reflection in your project README.md file.
+## Achieved Requirements
 
-**Required**
-🎯 What requirements did you achieve?
-🎯 Were there any requirements or goals that you were unable to achieve?
-🎯 If so, what was it that you found difficult about these tasks?
-Optional
-🏹 Feel free to add any other reflections you would like to share about your submission, for example:
+- Successfully implemented a **local image gallery** with thumbnails and full-screen display.
+- Added **side navigation arrows** to cycle through images using both clicks and keyboard arrows.
+- Implemented a **toggle button** to minimize/maximize the thumbnail bar, allowing better focus on full-screen images.
+- Applied **responsive CSS**, so the gallery adapts to mobile and tablet screens.
+- Ensured **image preloading** to prevent flickering or black frames on load.
+- Used **semantic and clean HTML structure**, keeping JS logic separated in `app.js`.
 
-- Requesting feedback about a specific part of your submission.
-  What useful external sources helped you complete the assignment (e.g Youtube tutorials)?
-- What errors or bugs did you encounter while completing your assignment? How did you solve them?
-- What went really well and what could have gone better?
+## Unachieved Requirements / Difficulties
 
-## Resources
+- At first, the **thumbnail toggle button** positioning and z-index caused it to be hidden behind images.
+- Large image files (~5 MB each) initially caused slow loading in some tests, requiring preloading for smooth display.
+- The requirement to dynamically generate thumbnails while keeping performance optimal was challenging at first.
 
-[Markdown Cheatsheet](https://www.markdownguide.org/cheat-sheet/)
+## Reflection
+
+- Learning how **JavaScript DOM manipulation** works in practice was very valuable. Preloading images and handling errors (`onerror`) was an important lesson.
+- I realized the importance of **case sensitivity** in filenames, especially on macOS, as `.JPG` vs `.jpg` made images not load.
+- External resources like **YouTube tutorials on JS galleries and MDN documentation** were extremely helpful.
+- Next time, I could improve **performance by using smaller thumbnail versions** instead of full-size images.
+- Overall, the project went well; the gallery is now fully functional, interactive, and visually responsive.
